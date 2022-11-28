@@ -110,9 +110,9 @@ const resetInputs = () => {
         e.preventDefault();
         const newSurvey = {
             authToken,
-            survey_name: surveyName,
-            survey_link: surveyLink,
-            study_id: study_id_local
+            surveyName: surveyName,
+            surveyLink: surveyLink,
+            studyId: study_id_local
         }
         axios
             .post('http://localhost:5000/api/users/auth/addsurveystudy', newSurvey,{
@@ -143,7 +143,7 @@ const resetInputs = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
-                                        fullWidth
+                                        
                                         label="Test Name"
                                         variant="outlined"
                                         value={testName}
@@ -152,7 +152,7 @@ const resetInputs = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
-                                        fullWidth
+                                        
                                         label="Test Link"   
                                         variant="outlined"
                                         value={testLink}
@@ -161,7 +161,7 @@ const resetInputs = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button
-                                        fullWidth
+                                        
                                         variant="contained"
                                         color="primary"
                                         type="submit"
@@ -176,7 +176,7 @@ const resetInputs = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
-                                        fullWidth                   
+                                                           
                                         label="Survey Name"
                                         variant="outlined"
                                         value={surveyName}
@@ -185,7 +185,7 @@ const resetInputs = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
-                                        fullWidth
+                                        
                                         label="Survey Link"
                                         variant="outlined"
                                         value={surveyLink}
@@ -194,7 +194,7 @@ const resetInputs = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button
-                                        fullWidth
+                                        
                                         variant="contained"
                                         color="primary"
                                         type="submit"

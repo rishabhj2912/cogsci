@@ -253,13 +253,7 @@ router.post("/auth/addstudy", fetchuser, async (req, res) => {
 // Route 10: Admin can delete a study using: POST "/api/auth/deletestudy". Login required
 router.post("/auth/deletestudy", fetchuser, async (req, res) => {
     try {
-        userId = req.user.id;
-        const admin = await Admin.findById
-(userId).select("-password");
-        if (!admin) {
-            return res.status(401).send("Access Denied");
-        }
-        const { studyId } = req.body;
+        const  studyId  = req.body.id;
         // if any field is empty
         if (!studyId) {
             return res.status(400).send("Please enter all fields");
@@ -289,18 +283,22 @@ router.post("/auth/addpatientstudy", fetchuser, async (req, res) => {
         const { studyId, patientId } = req.body;
         // if any field is empty
         if (!studyId || !patientId) {
+            console.log("Please enter all fields");
+            console.log(studyId, patientId);
             return res.status(400).send("Please enter all fields");
         }
         // check for existing study
         let study = await Study.findById
 (studyId);
         if (!study) {
+            console.log("Study does not exist");
             return res.status(400).send("Study does not exist");
         }
         // check for existing patient
         let patient = await Patient.findById
 (patientId);
         if (!patient) {
+            console.log("Patient does not exist");
             return res.status(400).send("Patient does not exist");
         }
         // check if patient is already in study
@@ -309,6 +307,7 @@ router.post("/auth/addpatientstudy", fetchuser, async (req, res) => {
             patientId
         });
         if (patientStudy) {
+            console.log("Patient already in study");
             return res.status(400).send("Patient already in study");
         }
         patientStudy = await Connector.create({
@@ -409,11 +408,7 @@ router.post("/auth/addteststudy", fetchuser, async (req, res) => {
 router.post("/auth/deleteteststudy", fetchuser, async (req, res) => {
     try {
         userId = req.user.id;
-        const admin = await Admin.findById
-(userId).select("-password");
-        if (!admin) {
-            return res.status(401).send("Access Denied");
-        }
+        
         const { studyId, testName }
     = req.body;
         // if any field is empty
@@ -447,21 +442,18 @@ router.post("/auth/deleteteststudy", fetchuser, async (req, res) => {
 router.post("/auth/addsurveystudy", fetchuser, async (req, res) => {
     try {
         userId = req.user.id;
-        const admin = await Admin.findById
-(userId).select("-password");
-        if (!admin) {
-            return res.status(401).send("Access Denied");
-        }
         const { studyId, surveyName
     , surveyLink } = req.body;
         // if any field is empty
         if (!studyId || !surveyName || !surveyLink) {
+            console.log("Please enter all fields");
             return res.status(400).send("Please enter all fields");
         }
         // check for existing study
         let study = await Study.findById
 (studyId);
         if (!study) {
+            console.log("Study does not exist");
             return res.status(400).send("Study does not exist");
         }
         // add survey to the array of surveys
@@ -483,11 +475,6 @@ router.post("/auth/addsurveystudy", fetchuser, async (req, res) => {
 router.post("/auth/deletesurveystudy", fetchuser, async (req, res) => {
     try {
         userId = req.user.id;
-        const admin = await Admin.findById
-(userId).select("-password");
-        if (!admin) {
-            return res.status(401).send("Access Denied");
-        }
         const { studyId, surveyName
     } = req.body;
         // if any field is empty
@@ -550,6 +537,7 @@ router.post("/auth/getpatientstudies", async (req, res) => {
             (studies[i].studyId);
             studyDetails.push(study);
     }
+        console.log(studyDetails);
         res.send(studyDetails);
     }
     catch (error) {

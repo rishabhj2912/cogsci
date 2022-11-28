@@ -10,7 +10,8 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      {/* add color to anvbar */}
+      <AppBar position="static" style={{ backgroundColor: "black" }}>
         <Toolbar>
           <Typography
             variant="h6"
@@ -21,9 +22,7 @@ const Navbar = () => {
             Home
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" onClick={() => navigate("/tests")}>
-            Tests/ Surveys
-          </Button>
+        
           <Button color="inherit" onClick={() => navigate("/register")}>
             Register
           </Button>

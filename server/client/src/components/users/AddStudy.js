@@ -102,7 +102,7 @@ const AddStudy = (props) => {
                                     id="studyName"
                                     label="Study Name"
                                     variant="outlined"
-                                    fullWidth
+                                    
                                     value={studyName}
                                     onChange={onChangestudyName}
                                 />
@@ -112,7 +112,7 @@ const AddStudy = (props) => {
                                     id="studyDescription"
                                     label="Study Description"
                                     variant="outlined"
-                                    fullWidth
+                                    
                                     value={studyDescription}
                                     onChange={onChangestudyDescription}
                                 />
@@ -123,7 +123,7 @@ const AddStudy = (props) => {
                                     id="studyStatus"   
                                     label="Study Status"
                                     variant="outlined"
-                                    fullWidth
+                                    
                                     value={studyStatus}
                                     onChange={onChangestudyStatus}
                                 />
@@ -133,7 +133,7 @@ const AddStudy = (props) => {
                                     id="studyStartDate"
                                     label="Study Start Date"
                                     variant="outlined"
-                                    fullWidth
+                                    
                                     value={studyStartDate}
                                     onChange={onChangestudyStartDate}
                                 />
@@ -143,7 +143,7 @@ const AddStudy = (props) => {
                                     id="studyEndDate"                 
                                     label="Study End Date"
                                     variant="outlined"
-                                    fullWidth
+                                    
                                     value={studyEndDate}
                                     onChange={onChangestudyEndDate}
                                 />  
@@ -154,7 +154,7 @@ const AddStudy = (props) => {
                                     variant="contained"
                                     color="primary"
                                     type="submit"
-                                    fullWidth
+                                    
                                 >
                                     Add Study
                                 </Button>

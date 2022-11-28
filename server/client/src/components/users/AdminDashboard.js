@@ -47,15 +47,26 @@ const AdminDashboard = (props) => {
     }, []);
 
     const deleteStudy = (id) => {
+        const ID = {
+            authToken: authToken,
+            id: id,
+        }
         axios
-            .delete("http://localhost:5000/api/users/auth/deletestudies/" + id)
+            .post("http://localhost:5000/api/users/auth/deletestudy", ID, {
+                headers: {
+                    "auth-token": authToken
+                }
+            })
+
             .then((res) => {
                 console.log(res.data);
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
             });
     }
+            
     const onSubmit = (id) => {
         localStorage.setItem("study_id_local",id);
         navigate("/studyDashboard");

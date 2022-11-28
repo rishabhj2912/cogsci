@@ -22,8 +22,11 @@ const navigate = useNavigate();
           >
             Tests/Surveys list
           </Typography>
+         
           <Box sx={{ flexGrow: 1 }} />
-          
+          <Button color="inherit" sx={{ bgcolor: "green" }} onClick={() => navigate("/adminDashboard")}>
+            Studies
+          </Button>
           <Button color="inherit" sx={{ bgcolor: "blue" }} onClick={() => navigate("/login")}>
             Logout
           </Button>
@@ -37,17 +40,11 @@ const navigate = useNavigate();
       <a className="menu-item" href="/addTest">
         Add Test
       </a>
-      <a className="menu-item" href="/register">
-        Modify/Delete Test
-      </a>
       <a className="menu-item">
         <h1>Surveys</h1>
       </a>
-      <a className="menu-item" href="/login">
+      <a className="menu-item" href="/addTest">
         Add Survey
-      </a>
-      <a className="menu-item" href="/">
-        Modify/delete Survey
       </a>
       <a className="menu-item">
         <h1>Participants</h1>

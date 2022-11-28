@@ -52,7 +52,15 @@ const Id = {
             }
             );
     }, []);
-
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
 //make a table of all the studies under the patient
     return (
         <div>
@@ -68,6 +76,7 @@ const Id = {
                                         <TableCell align="center">Study Start Date</TableCell>
                                         <TableCell align="center">Study End Date</TableCell>
                                         <TableCell align="center">Study Status</TableCell>
+                                        <TableCell align="center">Go to Study</TableCell>
 
                                     </TableRow>
                                 </TableHead>
@@ -82,6 +91,17 @@ const Id = {
                                             <TableCell align="center">{study.studyStartDate}</TableCell>
                                             <TableCell align="center">{study.studyEndDate}</TableCell>
                                             <TableCell align="center">{study.studyStatus}</TableCell>
+                                            <TableCell align="center">
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    onClick={() => {
+                                                        localStorage.setItem("study_id_local", study._id);
+                                                        navigate("/studyDashboard");
+                                                    }}
+                                                >   Go to Study
+                                                </Button>
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

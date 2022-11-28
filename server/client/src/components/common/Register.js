@@ -96,7 +96,12 @@ resetInputs();
   }
 };
   return (
+   
+ 
+   
     <div>
+      <h1>Patient Register</h1>
+    
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Box
@@ -156,7 +161,7 @@ resetInputs();
               <div>
                 <TextField
                   required
-                  id="outlined-password-input"
+                  id="outlined-password-input1"
                   label="Confirm Password"
                   type="password"
                   autoComplete="current-password"
@@ -178,6 +183,7 @@ resetInputs();
           </Box>
         </Grid>
       </Grid>
+    
     </div>
   );
 };

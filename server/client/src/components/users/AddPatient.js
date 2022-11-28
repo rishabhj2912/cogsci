@@ -48,15 +48,18 @@ const onChangePatient_id = (event) => {
     const onSubmit = (event) => {
         event.preventDefault();
         const Username = {
+            authToken,
             username: username,
         }
         // get patient from username
         axios.post("http://localhost:5000/api/users/getpatientfromusername", Username)
             .then((res) => {
                 setPatient(res.data);
-                setPatient_id(res.data.patient_id);
+                setPatient_id(res.data._id);
+                console.log(res.data._id);
         // add patient to study
         const ID = {
+            authToken: authToken,
             studyId: study_id_local,
             patientId: patient_id
           }
@@ -94,7 +97,6 @@ const onChangePatient_id = (event) => {
                                         id="username"
                                         name="username"
                                         label="Username"
-                                        fullWidth
                                         autoComplete="username"
                                         value={username}
                                         onChange={onChangeUsername}

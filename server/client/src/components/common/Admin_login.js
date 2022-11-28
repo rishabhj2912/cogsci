@@ -68,7 +68,6 @@ const Admin_login = (props) => {
                                     id="username"
                                     name="username"
                                     label="Username"
-                                    fullWidth
                                     autoComplete="username"
                                     value={username}
                                     onChange={onChangeUsername}
@@ -81,7 +80,6 @@ const Admin_login = (props) => {
                                     name="password"
                                     label="Password"
                                     type="password"
-                                    fullWidth
                                     autoComplete="current-password"
                                     value={password}
                                     onChange={onChangePassword}

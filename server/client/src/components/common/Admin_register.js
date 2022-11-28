@@ -108,7 +108,7 @@ const Admin_register = (props) => {
             <div className="form-group">
               <TextField
                 required            
-                id="outlined-password-input"
+                id="outlined-password-input1"
                 label="Confirm Password"
                 type="password"
                 autoComplete="current-password"

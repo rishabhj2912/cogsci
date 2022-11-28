@@ -20,6 +20,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TableContainer from '@mui/material/TableContainer';
+import Box from '@mui/material/Box';
 
 const StudyDashboard = (props) => {
     let navigate = useNavigate();
@@ -79,6 +80,43 @@ const StudyDashboard = (props) => {
             
 
     }, []);
+const onDeletetest = (testName) => {
+    const ID = {
+        authToken: authToken,
+        studyId: study_id_local,
+        testName: testName
+        }
+    axios
+        .post('http://localhost:5000/api/users/auth/deleteteststudy', ID)
+        .then((response) => {
+            console.log(response.data);
+            window.location.reload();
+        }
+        )
+        .catch((error) => {
+            console.log(error);
+        }
+        );
+}
+const onDeletesurvey = (surveyName) => {
+    const ID = {
+        authToken: authToken,
+        studyId: study_id_local,
+        surveyName: surveyName
+        }
+    axios
+        .post('http://localhost:5000/api/users/auth/deletesurveystudy', ID)
+        .then((response) => {
+            console.log(response.data);
+            window.location.reload();
+        }
+        )
+        .catch((error) => {
+            console.log(error);
+        }
+        );
+}
+
 
 // get the test names and links from tests array
     const testNames = tests.map((test) => {
@@ -101,20 +139,83 @@ const StudyDashboard = (props) => {
 
 // display tests and surveys with their links in a table
 //display links as hyperlinks with links opening in new tabs
+//add styling to the table
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
+    
     const displayTests = testNames.map((testName, index) => {
         return (
             <TableRow>
-                <TableCell>{testName}</TableCell>
-                <TableCell><a href={testLinks[index]} target="_blank">{testLinks[index]}</a></TableCell>
+                <StyledTableCell>{testName}</StyledTableCell>
+                <StyledTableCell><a
+                    href={testLinks[index]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {testLinks[index]}
+                </a></StyledTableCell>
+                {/* attempt button with the etst link */}
+                <StyledTableCell><Button
+                    variant="contained"
+                    color="primary"
+                    href={testLinks[index]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Attempt
+                </Button></StyledTableCell>
+                {/* delete button */}
+                <StyledTableCell><Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => onDeletetest(testName)}
+                >
+                    <DeleteIcon />
+                </Button></StyledTableCell>
+
             </TableRow>
         )
     }
     );
     const displaySurveys = surveyNames.map((surveyName, index) => {
         return (
+
             <TableRow>
-                <TableCell>{surveyName}</TableCell>
-                <TableCell><a href={surveyLinks[index]} target="_blank">{surveyLinks[index]}</a></TableCell>
+                <StyledTableCell>{surveyName}</StyledTableCell>
+                <StyledTableCell><a
+                    href={surveyLinks[index]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {surveyLinks[index]}
+                </a></StyledTableCell>
+                {/* attempt button with the survey link */}
+                <StyledTableCell><Button
+                    variant="contained"
+                    color="primary"
+                    href={surveyLinks[index]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Attempt
+                </Button></StyledTableCell>
+                {/* delete button */}
+                <StyledTableCell><Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => onDeletesurvey(surveyName)}
+                >
+                    <DeleteIcon />
+                </Button></StyledTableCell>
+
+
             </TableRow>
         )
     }
@@ -123,6 +224,8 @@ const StudyDashboard = (props) => {
     return (
         // make tables of tests and surveys with their links
         <div>
+            {/* leave 20px gap from top */}
+            <Box sx={{ pt: 5 }} />
             <h1>Study Dashboard</h1>
             
             <h2>Tests</h2>
@@ -130,8 +233,10 @@ const StudyDashboard = (props) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Test Name</TableCell>
-                            <TableCell>Test Link</TableCell>
+                            <StyledTableCell>Test Name</StyledTableCell>
+                            <StyledTableCell>Test Link</StyledTableCell>
+                            <StyledTableCell>Attempt</StyledTableCell>
+                            <StyledTableCell>Delete</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -144,8 +249,10 @@ const StudyDashboard = (props) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Survey Name</TableCell>
-                            <TableCell>Survey Link</TableCell>
+                            <StyledTableCell>Survey Name</StyledTableCell>
+                            <StyledTableCell>Survey Link</StyledTableCell>
+                            <StyledTableCell>Attempt</StyledTableCell>
+                            <StyledTableCell>Delete</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
